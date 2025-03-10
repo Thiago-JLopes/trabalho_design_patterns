@@ -10,7 +10,7 @@ class ExpressoTest {
     Transporte transporte;
     @BeforeEach
     void setUp() {
-        transporte = TrasporteFactory.obterTransporte("Expresso", "CidadeA", "CidadeB");
+        transporte = TransporteFactory.obterTransporte("Expresso", "CidadeA", "CidadeB");
         CargaFragil.getInstance().setPeso(20000.0f);
         CargaRefrigerada.getInstance().setPeso(20000.0f);
         CargaEspecial.getInstance().setPeso(200000.0f);

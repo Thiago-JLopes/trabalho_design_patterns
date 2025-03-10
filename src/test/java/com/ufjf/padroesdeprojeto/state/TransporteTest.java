@@ -12,7 +12,9 @@ class TransporteTest {
 
     @BeforeEach
     void setUp() {
-        transporte = TrasporteFactory.obterTransporte("Normal", "CidadeA", "CidadeB");
+        transporte = TransporteFactory.obterTransporte("Normal", "CidadeA", "CidadeB");
+        CargaFragil.getInstance().setPeso(200000.0f);
+        transporte.setCarga(CargaFragil.getInstance());
     }
 
     @Test
@@ -52,7 +54,8 @@ class TransporteTest {
         transporte.setEstado(TransporteEstadoAguardando.getInstance());
         transporte.setEstado(TransporteEstadoCargaColetada.getInstance());
         transporte.setEstado(TransporteEstadoEmTransito.getInstance());
-        transporte.setEstado(TransporteEstadoEntregue.getInstance());
+
+        transporte.entregarCarga();
 
         assertEquals(TransporteEstadoEntregue.getInstance(), transporte.getEstado());
         assertFalse(transporte.cancelar());

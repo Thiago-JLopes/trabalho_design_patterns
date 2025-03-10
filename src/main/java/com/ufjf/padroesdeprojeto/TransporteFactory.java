@@ -2,7 +2,7 @@ package com.ufjf.padroesdeprojeto;
 
 import java.lang.reflect.Constructor;
 
-public class TrasporteFactory {
+public class TransporteFactory {
     public static Transporte obterTransporte(String tipo, String origem, String destino) {
         Class classe = null;
         Object objeto = null;

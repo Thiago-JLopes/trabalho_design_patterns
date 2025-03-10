@@ -1,6 +1,8 @@
 package com.ufjf.padroesdeprojeto;
 
-public abstract class Transporte {
+import java.util.Observable;
+
+public abstract class Transporte extends Observable {
     protected Carga carga;
     private String origem;
     private String destino;
@@ -42,6 +44,10 @@ public abstract class Transporte {
         return estado.cancelar(this);
     }
 
+    public Carga getCarga() {
+        return this.carga;
+    }
+
     public void setCarga(Carga carga) {
         this.carga = carga;
     }
@@ -64,9 +70,22 @@ public abstract class Transporte {
 
     public void setEstado(TransporteEstado estado) {
         this.estado = estado;
+        setChanged();
+        notifyObservers();
     }
 
     public String getNomeEstado() {
         return estado.getEstado();
     }
+
+    @Override
+    public String toString() {
+        return "Transporte {" +
+                "Origem='" + origem + '\'' +
+                ", Destino='" + destino + '\'' +
+                ", Estado='" + getNomeEstado() + '\'' +
+                ", Carga=" + this.getCarga().getProduto() +
+                '}';
+    }
+
 }

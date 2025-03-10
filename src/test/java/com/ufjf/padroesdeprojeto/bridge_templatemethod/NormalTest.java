@@ -11,7 +11,7 @@ class NormalTest {
 
     @BeforeEach
     void setUp() {
-        transporte = TrasporteFactory.obterTransporte("Normal", "CidadeA", "CidadeB");
+        transporte = TransporteFactory.obterTransporte("Normal", "CidadeA", "CidadeB");
         CargaFragil.getInstance().setPeso(20000.0f);
         CargaRefrigerada.getInstance().setPeso(20000.0f);
         CargaEspecial.getInstance().setPeso(200000.0f);
