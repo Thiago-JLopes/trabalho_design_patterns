@@ -1,5 +1,6 @@
-package com.ufjf.padroesdeprojeto;
+package com.ufjf.padroesdeprojeto.bridge_templatemethod;
 
+import com.ufjf.padroesdeprojeto.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
