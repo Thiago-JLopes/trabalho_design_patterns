@@ -8,10 +8,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class RemetenteTest {
     @Test
     void deveNotificarRemetente() {
-        CargaEspecial.getInstance().setPeso(2000.0f);
+        CargaEspecial cargaEspecial = new CargaEspecial(new FabricaTransporteEspecial());
+        cargaEspecial.setPeso(2000.0f);
+
         Transporte transporte = TransporteFactory.obterTransporte("Normal", "CidadeA", "CidadeB");
         Remetente remetente = new Remetente("RemetenteA");
-        transporte.setCarga(CargaEspecial.getInstance());
+        transporte.setCarga(cargaEspecial);
 
         remetente.iniciarRastreamento(transporte);
         transporte.aguardarColetaCarga();
@@ -21,11 +23,13 @@ class RemetenteTest {
 
     @Test
     void deveNotificarRemetentes() {
-        CargaEspecial.getInstance().setPeso(2000.0f);
+        CargaEspecial cargaEspecial = new CargaEspecial(new FabricaTransporteEspecial());
+        cargaEspecial.setPeso(2000.0f);
+
         Transporte transporte = TransporteFactory.obterTransporte("Normal", "CidadeA", "CidadeB");
         Remetente remetenteA = new Remetente("RemetenteA");
         Remetente remetenteB = new Remetente("RemetenteB");
-        transporte.setCarga(CargaEspecial.getInstance());
+        transporte.setCarga(cargaEspecial);
 
         remetenteA.iniciarRastreamento(transporte);
         remetenteB.iniciarRastreamento(transporte);
@@ -37,10 +41,12 @@ class RemetenteTest {
 
     @Test
     void naoDeveNotificarRemetente() {
-        CargaEspecial.getInstance().setPeso(2000.0f);
+        CargaEspecial cargaEspecial = new CargaEspecial(new FabricaTransporteEspecial());
+        cargaEspecial.setPeso(2000.0f);
+
         Transporte transporte = TransporteFactory.obterTransporte("Normal", "CidadeA", "CidadeB");
         Remetente remetente = new Remetente("RemetenteA");
-        transporte.setCarga(CargaEspecial.getInstance());
+        transporte.setCarga(cargaEspecial);
 
         transporte.aguardarColetaCarga();
 

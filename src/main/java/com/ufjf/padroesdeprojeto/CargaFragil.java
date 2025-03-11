@@ -3,13 +3,12 @@ package com.ufjf.padroesdeprojeto;
 public class CargaFragil implements Carga {
     private float peso;
     private String produto;
+    private Veiculo veiculo;
+    private Motorista motorista;
 
-    private static final CargaFragil instance = new CargaFragil();
-
-    private CargaFragil() {}
-
-    public static CargaFragil getInstance() {
-        return instance;
+    public CargaFragil(FabricaAbstrata fabrica) {
+        this.veiculo = fabrica.gerarVeiculo();
+        this.motorista = fabrica.gerarMotorista();
     }
 
     @Override

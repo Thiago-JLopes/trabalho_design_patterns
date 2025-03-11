@@ -4,17 +4,21 @@ import com.ufjf.padroesdeprojeto.CargaEspecial;
 import com.ufjf.padroesdeprojeto.Destinatario;
 import com.ufjf.padroesdeprojeto.Transporte;
 import com.ufjf.padroesdeprojeto.TransporteFactory;
+import com.ufjf.padroesdeprojeto.FabricaTransporteEspecial;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 class DestinatarioTest {
 
     @Test
     void deveNotificarDestinatario() {
-        CargaEspecial.getInstance().setPeso(2000.0f);
+        CargaEspecial cargaEspecial = new CargaEspecial(new FabricaTransporteEspecial());
+        cargaEspecial.setPeso(2000.0f);
+
         Transporte transporte = TransporteFactory.obterTransporte("Normal", "CidadeA", "CidadeB");
         Destinatario destinatario = new Destinatario("DestinatarioA");
-        transporte.setCarga(CargaEspecial.getInstance());
+        transporte.setCarga(cargaEspecial);
 
         destinatario.iniciarRastreamento(transporte);
         transporte.aguardarColetaCarga();
@@ -24,11 +28,13 @@ class DestinatarioTest {
 
     @Test
     void deveNotificarDestinatarios() {
-        CargaEspecial.getInstance().setPeso(2000.0f);
+        CargaEspecial cargaEspecial = new CargaEspecial(new FabricaTransporteEspecial());
+        cargaEspecial.setPeso(2000.0f);
+
         Transporte transporte = TransporteFactory.obterTransporte("Normal", "CidadeA", "CidadeB");
         Destinatario destinatarioA = new Destinatario("DestinatarioA");
         Destinatario destinatarioB = new Destinatario("DestinatarioB");
-        transporte.setCarga(CargaEspecial.getInstance());
+        transporte.setCarga(cargaEspecial);
 
         destinatarioA.iniciarRastreamento(transporte);
         destinatarioB.iniciarRastreamento(transporte);
@@ -40,10 +46,12 @@ class DestinatarioTest {
 
     @Test
     void naoDeveNotificarDestinatario() {
-        CargaEspecial.getInstance().setPeso(2000.0f);
+        CargaEspecial cargaEspecial = new CargaEspecial(new FabricaTransporteEspecial());
+        cargaEspecial.setPeso(2000.0f);
+
         Transporte transporte = TransporteFactory.obterTransporte("Normal", "CidadeA", "CidadeB");
         Destinatario destinatario = new Destinatario("DestinatarioA");
-        transporte.setCarga(CargaEspecial.getInstance());
+        transporte.setCarga(cargaEspecial);
 
         transporte.aguardarColetaCarga();
 

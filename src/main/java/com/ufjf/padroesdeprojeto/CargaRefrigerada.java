@@ -4,13 +4,12 @@ public class CargaRefrigerada implements Carga {
     private float peso;
     private String produto;
     private float temperaturaRecomendada;
+    private Veiculo veiculo;
+    private Motorista motorista;
 
-    private static final CargaRefrigerada instance = new CargaRefrigerada();
-
-    private CargaRefrigerada() {}
-
-    public static CargaRefrigerada getInstance() {
-        return instance;
+    public CargaRefrigerada(FabricaAbstrata fabrica) {
+        this.veiculo = fabrica.gerarVeiculo();
+        this.motorista = fabrica.gerarMotorista();
     }
 
     public void setTemperaturaRecomendada(float temperatura) {

@@ -8,32 +8,40 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class NormalTest {
     Transporte transporte;
+    Carga cargaFragil;
+    Carga cargaRefrigerada;
+    Carga cargaEspecial;
 
     @BeforeEach
     void setUp() {
         transporte = TransporteFactory.obterTransporte("Normal", "CidadeA", "CidadeB");
-        CargaFragil.getInstance().setPeso(20000.0f);
-        CargaRefrigerada.getInstance().setPeso(20000.0f);
-        CargaEspecial.getInstance().setPeso(200000.0f);
+
+        cargaFragil = new CargaFragil(new FabricaTransporteSensivel());
+        cargaRefrigerada = new CargaRefrigerada(new FabricaTransporteRefrigerado());
+        cargaEspecial = new CargaEspecial(new FabricaTransporteEspecial());
+
+        cargaFragil.setPeso(20000.0f);
+        cargaRefrigerada.setPeso(20000.0f);
+        cargaEspecial.setPeso(200000.0f);
     }
 
     @Test
     void deveRetornarCustoTotalTransporteCargaFragil() {
-        transporte.setCarga(CargaFragil.getInstance());
+        transporte.setCarga(cargaFragil);
         float custoTotal = transporte.custoTotalTransporte();
         assertEquals(48000.0f, custoTotal, 0.01f);
     }
 
     @Test
     void deveRetornarCustoTotalTransporteCargaRefrigerada() {
-        transporte.setCarga(CargaRefrigerada.getInstance());
+        transporte.setCarga(cargaRefrigerada);
         float custoTotal = transporte.custoTotalTransporte();
         assertEquals(60000.00f, custoTotal, 0.01f);
     }
 
     @Test
     void deveRetornarCustoTotalTransporteCargaEspecial() {
-        transporte.setCarga(CargaEspecial.getInstance());
+        transporte.setCarga(cargaEspecial);
         float custoTotal = transporte.custoTotalTransporte();
         assertEquals(360000.0f, custoTotal, 0.01f);
     }

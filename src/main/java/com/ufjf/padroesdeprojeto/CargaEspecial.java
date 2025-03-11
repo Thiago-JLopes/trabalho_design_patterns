@@ -3,12 +3,12 @@ package com.ufjf.padroesdeprojeto;
 public class CargaEspecial implements Carga {
     private float peso;
     private String produto;
-    private static final CargaEspecial instance = new CargaEspecial();
+    private Veiculo veiculo;
+    private Motorista motorista;
 
-    private CargaEspecial() {}
-
-    public static CargaEspecial getInstance() {
-        return instance;
+    public CargaEspecial(FabricaAbstrata fabrica) {
+        this.veiculo = fabrica.gerarVeiculo();
+        this.motorista = fabrica.gerarMotorista();
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.ufjf.padroesdeprojeto.CargaEspecial;
 import com.ufjf.padroesdeprojeto.GerenciadorTransporte;
 import com.ufjf.padroesdeprojeto.Transporte;
 import com.ufjf.padroesdeprojeto.TransporteFactory;
+import com.ufjf.padroesdeprojeto.FabricaTransporteEspecial;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,10 +12,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class GerenciadorTransporteTest {
     @Test
     void deveNotificarGerenciadorTransporte() {
-        CargaEspecial.getInstance().setPeso(2000.0f);
+        CargaEspecial cargaEspecial = new CargaEspecial(new FabricaTransporteEspecial());
+        cargaEspecial.setPeso(2000.0f);
+
         Transporte transporte = TransporteFactory.obterTransporte("Normal", "CidadeA", "CidadeB");
         GerenciadorTransporte gerenciador = new GerenciadorTransporte("GerenciadorTransporteA");
-        transporte.setCarga(CargaEspecial.getInstance());
+        transporte.setCarga(cargaEspecial);
 
         gerenciador.iniciarRastreamento(transporte);
         transporte.aguardarColetaCarga();
@@ -24,11 +27,13 @@ class GerenciadorTransporteTest {
 
     @Test
     void deveNotificarGerenciadorTransportes() {
-        CargaEspecial.getInstance().setPeso(2000.0f);
+        CargaEspecial cargaEspecial = new CargaEspecial(new FabricaTransporteEspecial());
+        cargaEspecial.setPeso(2000.0f);
+
         Transporte transporte = TransporteFactory.obterTransporte("Normal", "CidadeA", "CidadeB");
         GerenciadorTransporte gerenciadorA = new GerenciadorTransporte("GerenciadorTransporteA");
         GerenciadorTransporte gerenciadorB = new GerenciadorTransporte("GerenciadorTransporteB");
-        transporte.setCarga(CargaEspecial.getInstance());
+        transporte.setCarga(cargaEspecial);
 
         gerenciadorA.iniciarRastreamento(transporte);
         gerenciadorB.iniciarRastreamento(transporte);
@@ -40,10 +45,12 @@ class GerenciadorTransporteTest {
 
     @Test
     void naoDeveNotificarGerenciadorTransporte() {
-        CargaEspecial.getInstance().setPeso(2000.0f);
+        CargaEspecial cargaEspecial = new CargaEspecial(new FabricaTransporteEspecial());
+        cargaEspecial.setPeso(2000.0f);
+
         Transporte transporte = TransporteFactory.obterTransporte("Normal", "CidadeA", "CidadeB");
         GerenciadorTransporte gerenciador = new GerenciadorTransporte("GerenciadorTransporteA");
-        transporte.setCarga(CargaEspecial.getInstance());
+        transporte.setCarga(cargaEspecial);
 
         transporte.aguardarColetaCarga();
 

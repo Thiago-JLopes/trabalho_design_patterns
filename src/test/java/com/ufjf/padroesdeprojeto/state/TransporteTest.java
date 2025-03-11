@@ -13,8 +13,9 @@ class TransporteTest {
     @BeforeEach
     void setUp() {
         transporte = TransporteFactory.obterTransporte("Normal", "CidadeA", "CidadeB");
-        CargaFragil.getInstance().setPeso(200000.0f);
-        transporte.setCarga(CargaFragil.getInstance());
+        CargaFragil cargaFragil = new CargaFragil(new FabricaTransporteSensivel());
+        cargaFragil.setPeso(200000.0f);
+        transporte.setCarga(cargaFragil);
     }
 
     @Test
