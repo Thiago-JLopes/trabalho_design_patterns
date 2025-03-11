@@ -7,4 +7,6 @@ public interface Carga {
     String getDescricao();
     String getProduto();
     void setProduto(String produto);
+    Veiculo getVeiculo();
+    Motorista getMotorista();
 }

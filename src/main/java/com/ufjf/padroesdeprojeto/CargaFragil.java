@@ -12,6 +12,16 @@ public class CargaFragil implements Carga {
     }
 
     @Override
+    public Veiculo getVeiculo() {
+        return this.veiculo;
+    }
+
+    @Override
+    public Motorista getMotorista() {
+        return this.motorista;
+    }
+
+    @Override
     public float getCustoTransporte() {
         return peso * 2.0f;
     }

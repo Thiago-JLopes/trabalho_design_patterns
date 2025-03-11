@@ -41,6 +41,16 @@ public class CargaRefrigerada implements Carga {
     }
 
     @Override
+    public Veiculo getVeiculo() {
+        return this.veiculo;
+    }
+
+    @Override
+    public Motorista getMotorista() {
+        return this.motorista;
+    }
+
+    @Override
     public String getProduto() {
         return this.produto;
     }
